@@ -137,6 +137,14 @@
             width: 25%;
             overflow: hidden;
 
+            .centered {
+                color: #000000;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              }
+
             .articulo1 {
                 position: relative;
                 transition: all .5s ease;
