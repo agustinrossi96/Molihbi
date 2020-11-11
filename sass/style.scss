@@ -14,14 +14,17 @@
 //Mensaje de arriba
 .banner {
     color: white;
-    background-color: $ColorSecundario;
     height: 28px;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
     text-align: center;
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
 
     p {
         text-align: center;
@@ -37,15 +40,21 @@
 
 //Comienzo del Navbar en formato nesting con Menu hamburguesa//
 .navbar {
-    width: auto;
+
     height: 75px;
     justify-content: center;
     display: flex;
     align-content: center;
     align-items: center;
-    position: absolute;
-    margin: 0% 20%;
     background-color: white;
+    width: 100%;
+    top: 28px;
+    z-index: 9999;
+
+
+
+
+
 
     .menu-btn {
         position: relative;
@@ -71,7 +80,9 @@
                 height: 2px;
                 background: #000000;
                 transition: all .5s ease-in-out;
+
             }
+
 
             &::after {
                 content: "";
@@ -97,45 +108,79 @@
 
 }
 
+
+
 //Fin del Navbar en formato nesting con Menu hamburguesa//
 //Esto va por separado del nesting asi me lee el Js, creo yo, funciona.//
 .menu-btn.open .menu-btn-burger {
     transform: translateX(-50px);
     background: transparent;
     box-shadow: none;
+
 }
 
 .menu-btn.open .menu-btn-burger::before {
     transform: rotate(45deg) translate(35px, -35px);
+
 }
 
 .menu-btn.open .menu-btn-burger::after {
     transform: rotate(-45deg) translate(35px, 35px);
+
 }
+
 
 //Fin del Navbar y Js del menu//
 
 
+//Comienzo del Dropdown menu
+
+#toggle {
+    display: none;
+}
+
+.menu-escondido {
+    visibility: hidden;
+}
+
+
+
+.nav {
+    position: fixed;
+    background-color: white;
+    z-index: 1;
+    left: 0;
+    top: 104px;
+}
+
+#toggle:checked+.menu-escondido {
+    visibility: visible;
+}
+
+
+
+#carouselExampleIndicators {
+    top: 103px;
+}
+
+
+
+
+
+
+
+//Fin del Dropdown menu
 
 
 //Comienzo de los articulos con overlay//
 .container-fluid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    overflow: hidden;
+
 
     .row {
 
         a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 25%;
-            overflow: hidden;
+
+
 
 
             .articulo1 {
@@ -185,31 +230,121 @@
                     transition: all .5s ease;
                 }
             }
+
+
         }
 
-        .mitad {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 50%;
-            overflow: hidden;
-            height: 600px;
+    }
+}
 
-            img {
-                width: 1000px;
-                height: auto;
+//Fin de los articulos con overlay//
+
+
+.card-group {
+    overflow: hidden;
+
+    .card {
+        overflow: hidden;
+
+
+        .card-body {
+            overflow: hidden;
+
+            .card-text {
+                position: absolute;
+                z-index: 1;
+
+            }
+
+
+
+
+            .card-img-top {
+
+                position: relative;
+                transition: all .5s ease;
+                z-index: 0;
+
+                //esto le aplica el efecto a la foto 1
+                &:hover {
+                    transform: scale(1.1);
+                    filter: opacity(80%);
+                    transition: all .5s ease;
+
+                }
+
             }
 
         }
     }
 }
 
-//Fin de los articulos con overlay//
+
+//Comienzo mitad/mitad
+.leftside,
+.rightside {
+
+    height: 65vh;
+    width: 100%;
+    overflow: hidden;
+
+    transition: all .5s ease-in-out;
+
+    &:hover p {
+        visibility: visible;
+        transition: all .2s ease-in-out;
+        transform: scale(1.5);
+
+    }
+
+    h1 {
+        position: absolute;
+        z-index: 1;
+
+
+    }
+
+    p {
+        visibility: hidden;
+        position: absolute;
+        z-index: 1;
+        top: 15%;
+        left: 4.3%;
+
+
+
+    }
+
+    img {
+        position: relative;
+        transition: all .5s ease;
+        z-index: 0;
+        bottom: 300px;
+
+
+
+        &:hover {
+            transform: scale(1.1);
+            filter: opacity(80%);
+            transition: all .5s ease;
+
+        }
+    }
+}
+
+
+//Fin mitad/mitad 
+
 
 //Comienzo iconos de beneficios//
 .container {
+    margin: 100px 0px;
+
+
 
     .row {
+
+
 
         h5 {
             color: black;
@@ -218,29 +353,31 @@
 
         p {
             color: black;
-            margin-bottom: 40px;
+
         }
     }
 }
+
 //Fin iconos de beneficios//
 
 
 //Titulos nuevos que dividen la pantalla//
 .separador {
     text-align: center;
-    margin: 20px;
+    margin-top: 115px;
+
 
     h1 {
         margin: 0%;
     }
 }
+
 //Fin Titulos nuevos//
 
 
 //Comienzo de los estilos para Carrito.html//
-.container {
+.container-carrito {
     margin-top: 40px;
-    position: relative;
     text-align: center;
     color: white;
 
@@ -270,8 +407,113 @@
         color: black;
         margin-bottom: 20px;
     }
-    
+
 }
+
+//Pagina de ARTICULOS 
+.container-articulo-desktop {
+
+    margin-top: 103px;
+
+    .row {
+
+        overflow: hidden;
+
+
+        .foto {
+            position: relative;
+            left: 25%;
+        }
+
+
+
+        .newarrival {
+            background-color: rgba(226, 152, 32, 0.733);
+            width: 50px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            left: 0%;
+        }
+
+        input {
+            margin-top: 25px;
+            width: 20px;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 12px;
+
+        }
+
+        label {
+            font-size: 12px;
+
+        }
+
+        button {
+
+            position: relative;
+            border-radius: 0;
+            padding: 10px;
+            margin-top: 330px;
+            width: 100%;
+
+            p {
+                font-size: 12px;
+                font-weight: bold;
+            }
+        }
+
+        .info {
+
+            padding-top: 50px;
+            font-size: 12px;
+            font-weight: normal;
+
+            .titulo {
+                font-size: 14px;
+            }
+        }
+
+    }
+}
+
+
+
+.carousel-control-next,
+.carousel-control-prev
+
+/*, .carousel-indicators */
+    {
+    filter: invert(100%);
+}
+
+.separador2 {
+    margin-top: 80px;
+    margin-bottom: 25px;
+
+    text-align: center;
+
+
+    h1 {
+        margin: 0%;
+    }
+
+}
+
+//Footer
+
+.container-footer {
+    margin: 0%;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -287,25 +529,81 @@
     .beneficios-app {
         display: none;
     }
+
+    .container-articulo-app {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 950px) {
-    .navbar {
-        margin: 0%;
-    }         
+
+
+    .separador {
+        position: relative;
+        background-color: white;
+        top: 120px;
+    }
+
+    .separador2 {
+        margin-top: 200px;
+        margin-bottom: 0%;
+        text-align: center;
+
+        h1 {
+            font-size: 20px;
+
+        }
+
+        p {
+            margin: 0%;
+            font-size: 12px;
+        }
+
+
+    }
+
+    .separador3 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 2%;
+
+        h1 {
+            font-size: 20px;
+        }
+    }
+
+    .card-group {
+        margin-top: 125px;
+    }
+
+    .secundario {
+        margin-top: 2%;
+    }
+
+    .espacio {
+        margin-top: 0%;
+    }
+
 
     .beneficios-desktop {
         display: none;
     }
 
     .beneficios-app {
-        margin: 50px 0px;
+        margin: 0%;
     }
 
+    .carousel-indicators {
+        top: 160px;
+
+    }
+
+
+
     .container-fluid {
-      
+
         .row {
-            
+
             a {
                 width: 50%;
             }
@@ -325,20 +623,20 @@
             margin-bottom: 15px;
             font-size: 24px;
         }
-        
+
     }
 
     .separador {
         height: 45px;
         margin: 0%;
-       
+
         h1 {
             font-size: 20px;
             text-align: center;
             display: flex;
             justify-content: center;
-            
-            
+
+
         }
 
         p {
@@ -349,4 +647,123 @@
 
 
 
+}
+
+
+@media screen and (max-width: 950px) {
+
+    .leftside,
+    .rightside {
+
+        &:hover p {
+            visibility: hidden;
+        }
+
+        height: 25vh;
+
+        img {
+            position: relative;
+            transition: all .5s ease;
+            z-index: 0;
+            bottom: 150px;
+
+            p {
+                display: none;
+                visibility: hidden;
+            }
+
+
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+    }
+}
+
+
+
+
+
+
+@media screen and (max-width: 950px) {
+    .container-articulo-desktop {
+        display: none;
+    }
+
+
+    .container-articulo-app {
+        margin-top: 103px;
+        width: 100%;
+
+        .row {
+
+            overflow: hidden;
+
+
+            .foto {
+                position: relative;
+                left: 25%;
+            }
+
+            .titulo-articulo {
+                font-size: 24px;
+            }
+
+
+
+
+
+
+
+            .newarrival {
+                background-color: rgba(226, 152, 32, 0.733);
+                width: 50px;
+                color: white;
+                font-size: 12px;
+                font-weight: bold;
+                left: 0%;
+            }
+
+            input {
+
+                width: 20px;
+                border: 1px solid black;
+                text-align: center;
+                font-size: 12px;
+
+            }
+
+            label {
+                font-size: 12px;
+
+            }
+
+            button {
+                border-radius: 0;
+                padding: 10px;
+                margin-top: 29px;
+                width: 100%;
+
+
+
+                p {
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+
+            .info {
+
+
+                font-size: 12px;
+                font-weight: normal;
+
+                .titulo {
+                    font-size: 14px;
+                }
+            }
+
+        }
+    }
 }
